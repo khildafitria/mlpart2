@@ -194,7 +194,7 @@ sns.countplot(x='hour',data=bakery)
 plt.title('Penjualan Produk Berdasarkan Waktu')
 plt.show()
 ```
-``bash
+```bash
 out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
