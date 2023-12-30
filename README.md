@@ -30,6 +30,75 @@ Dataset yang digunakan adalah dataset yang diambil dari kaggle, Dataset Transact
 - Transaction : merupakan jumlah produk yang konsumen beli di toko roti. 
 - Item : merupakan menu makanan produk yang dijual di toko roti.
 
+## Data preprocessing
+Untuk menggabungkan kolom date dan time. masukan perintah :
+```bash
+bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
+```
+
+Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. 
+Masukan perintah :
+```bash
+bakery = bakery.drop(['Date','Time'],axis=1)
+bakery.head()
+```
+
+Untuk mengkonversikan kolom Datetime dalam Data Frame bakery menjadi objek waktu. Masukan perintah :
+```bash
+bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%Y-%m-%d %H:%M")
+```
+
+Untuk mendapatkan tipe data dari kolom Datetime dalam Data Frame bakery. Masukan perintah :
+```bash
+bakery["Datetime"].dtype
+```
+
+Untuk memecah kolom Datetime ke dalam  bulan, hari, dan jam. Masukan perintah :
+```bash
+bakery["month"] = bakery['Datetime'].dt.month
+bakery["day"] = bakery['Datetime'].dt.day
+bakery["hour"] = bakery['Datetime'].dt.hour
+bakery.head()
+```
+
+Jika ingin menampilkan penjualan produk berdasarkan tanggal, maka masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='day',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Tanggal')
+plt.show()
+```
+```bash
+out :
+```
+Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada setiap tanggal (hari). Setiap batang pada sumbu x menunjukkan seberapa sering produk terjual pada hari tertentu.
+
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
+
+Untuk menampilkan penjualan produk berdasarkan waktu (jam) dalam sehari. Masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='hour',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Waktu')
+plt.show()
+```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
+
+Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='month',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Bulan')
+plt.show()
+```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
+
 ## Import Library
 Data berdasarkan kaggle
 
@@ -142,74 +211,6 @@ Disini tampil grafik yang menampilkan frekuensi 10 produk makanan yang kurang la
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
 
-## Data preprocessing
-Untuk menggabungkan kolom date dan time. masukan perintah :
-```bash
-bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
-```
-
-Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. 
-Masukan perintah :
-```bash
-bakery = bakery.drop(['Date','Time'],axis=1)
-bakery.head()
-```
-
-Untuk mengkonversikan kolom Datetime dalam Data Frame bakery menjadi objek waktu. Masukan perintah :
-```bash
-bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%Y-%m-%d %H:%M")
-```
-
-Untuk mendapatkan tipe data dari kolom Datetime dalam Data Frame bakery. Masukan perintah :
-```bash
-bakery["Datetime"].dtype
-```
-
-Untuk memecah kolom Datetime ke dalam  bulan, hari, dan jam. Masukan perintah :
-```bash
-bakery["month"] = bakery['Datetime'].dt.month
-bakery["day"] = bakery['Datetime'].dt.day
-bakery["hour"] = bakery['Datetime'].dt.hour
-bakery.head()
-```
-
-Jika ingin menampilkan penjualan produk berdasarkan tanggal, maka masukan perintah :
-```bash
-plt.figure(figsize=(8,5))
-sns.countplot(x='day',data=bakery)
-plt.title('Penjualan Produk Berdasarkan Tanggal')
-plt.show()
-```
-```bash
-out :
-```
-Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada setiap tanggal (hari). Setiap batang pada sumbu x menunjukkan seberapa sering produk terjual pada hari tertentu.
-
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
-
-Untuk menampilkan penjualan produk berdasarkan waktu (jam) dalam sehari. Masukan perintah :
-```bash
-plt.figure(figsize=(8,5))
-sns.countplot(x='hour',data=bakery)
-plt.title('Penjualan Produk Berdasarkan Waktu')
-plt.show()
-```
-```bash
-out :
-```
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
-
-Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
-```bash
-plt.figure(figsize=(8,5))
-sns.countplot(x='month',data=bakery)
-plt.title('Penjualan Produk Berdasarkan Bulan')
-plt.show()
-```
-```bash
-out :
-```
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
 
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
