@@ -108,7 +108,7 @@ bakery.shape
 
 ## Exploratory Data Analysis
 Jika ingin menampilkan 10 produk yang paling laris pada dataset ini, yaitu masukan perintah :
-``bash
+```bash
 top_item = bakery['Item'].value_counts().nlargest(10)
 custom_colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#c2c2f0', '#ffb3e6', '#c2f0c2', '#ff6666', '#c2f0f0', '#ffcc99']
 
