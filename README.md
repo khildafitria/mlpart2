@@ -194,6 +194,11 @@ sns.countplot(x='hour',data=bakery)
 plt.title('Penjualan Produk Berdasarkan Waktu')
 plt.show()
 ```
+``bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
+
 Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
 ```bash
 plt.figure(figsize=(8,5))
@@ -201,6 +206,11 @@ sns.countplot(x='month',data=bakery)
 plt.title('Penjualan Produk Berdasarkan Bulan')
 plt.show()
 ```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
+
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
 ```bash
