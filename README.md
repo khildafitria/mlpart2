@@ -122,6 +122,8 @@ out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/e2613709-419b-45e4-b53e-301f4977d960)
 
+Disini tampil pie chart yang menampilkan urutan 10 produk makanan yang paling laris dimulai dari coffee, bread, tea, cake, pastry, none, sandwich, medialuna, hot chocolate, dan cookies.
+
 
 Lalu, jika ingin menampilkan 10 produk yang kurang laris. Masukan perintah :
 ```bash
@@ -141,6 +143,8 @@ plt.show()
 out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
+
+Disini tampil countplot yang menampilkan urutan 10 produk makanan yang kurang laris dimulai dari gift voucher, raw bars, polenta, chicken sand, the bart, adjusment, olum & polenta, bacon, fairy doors, dan hack the stack.
 
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
@@ -178,6 +182,8 @@ out :
 ```
 ![image](https://github.com/khildafitria/machinelearning/assets/149028314/9e355699-5971-4123-ab4e-2eede09cdd5e)
 
+Disini tampil pie chart yang menampilkan urutan 10 produk makanan yang paling laris dimulai dari coffee, bread, tea, cake, pastry, none, sandwich, medialuna, hot chocolate, dan cookies.
+
 
 Menampilkan distribusi dari fitur lemak tubuh, masukan perintah :
 ```bash
@@ -189,8 +195,23 @@ out :
 ```
 ![image](https://github.com/khildafitria/machinelearning/assets/149028314/bec186f1-c2b2-4dda-ad66-1979503ba7cb)
 
+Disini tampil pie chart yang menampilkan urutan 10 produk makanan yang paling laris dimulai dari gift voucher, raw bars, polenta, chicken sand, the bart, adjusment, olum & polenta, bacon, fairy doors, dan hack the stack.
 
+## Data Preparation
+Untuk menggabungkan kolom date dan time dengan memasukan perintah :
+```bash
+bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
+```
 
+Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. Masukan perintah :
+```bash
+bakery = bakery.drop(['Date','Time'],axis=1)
+bakery.head()
+```
+Konversikan kolom 'Datetime' dalam DataFrame bakery menjadi objek waktu (datetime). Masukan perintah :
+```bash
+bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%Y-%m-%d %H:%M")
+```
 ## Modeling
 Untuk melakukan modeling saya memakai algoritma regresi linear, dimana kita harus memisahkan mana saja atribut yang akan dijadikan sebagai fitur(x) dan atribut mana yang dijadikan label(y).
 ```bash
