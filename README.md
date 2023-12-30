@@ -184,9 +184,6 @@ out :
 ```
 ![image](https://github.com/khildafitria/machinelearning/assets/149028314/9e355699-5971-4123-ab4e-2eede09cdd5e)
 
-Disini tampil pie chart yang menampilkan urutan 10 produk makanan yang paling laris dimulai dari coffee, bread, tea, cake, pastry, none, sandwich, medialuna, hot chocolate, dan cookies.
-
-
 Menampilkan distribusi dari fitur lemak tubuh, masukan perintah :
 ```bash
 plt.figure(figsize=(15,5))
@@ -197,15 +194,14 @@ out :
 ```
 ![image](https://github.com/khildafitria/machinelearning/assets/149028314/bec186f1-c2b2-4dda-ad66-1979503ba7cb)
 
-Disini tampil pie chart yang menampilkan urutan 10 produk makanan yang paling laris dimulai dari gift voucher, raw bars, polenta, chicken sand, the bart, adjusment, olum & polenta, bacon, fairy doors, dan hack the stack.
-
 ## Data Preparation
-Untuk menggabungkan kolom date dan time dengan memasukan perintah :
+Untuk menggabungkan kolom date dan time. masukan perintah :
 ```bash
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
 ```
 
-Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. Masukan perintah :
+Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. 
+Masukan perintah :
 ```bash
 bakery = bakery.drop(['Date','Time'],axis=1)
 bakery.head()
