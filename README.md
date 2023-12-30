@@ -22,7 +22,7 @@ Bagian laporan ini mencakup :
 ## Data Understanding
 Dataset yang digunakan adalah dataset yang diambil dari kaggle, dimana isi dari Body Fat Prediction Dataset ini yaitu hasil perkiraan persentase lemak tubuh yang ditentukan di bawah air dengan pengukuran lingkar tubuh 252 pria dan diteliti berdasarkan 14 atribut diatas.
 
-[Transactions from a bakery]([https://www.kaggle.com/datasets/fedesoriano/body-fat-prediction-dataset/data](https://www.kaggle.com/datasets/sulmansarwar/transactions-from-a-bakery)). 
+[Transactions from a bakery]([https://www.kaggle.com/datasets/sulmansarwar/transactions-from-a-bakery]). 
 
 ### Variabel-variabel pada Body Fat Prediction Dataset adalah sebagai berikut:
 - Density : merupakan kepadatan tubuh dalam penimbangan dibawah air.(Float)
