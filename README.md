@@ -142,7 +142,7 @@ Disini tampil grafik yang menampilkan frekuensi 10 produk makanan yang kurang la
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
 
-## Data Preparation
+## Data preprocessing
 Untuk menggabungkan kolom date dan time. masukan perintah :
 ```bash
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
