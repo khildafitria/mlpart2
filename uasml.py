@@ -4,10 +4,10 @@ import numpy as np
 from mlxtend.frequent_patterns import association_rules, apriori
 
 df = pd.read_csv('BreadBasket_DMS.csv')
-df['Date'] = pd.to_datetime(df['Date'], format= "%d-%m-%Y")
+df['Datetime'] = pd.to_datetime(df['Datetime'], format= "%d-%m-%Y")
 
-df["month"] = df['Date'].dt.month
-df["day"] = df['Date'].dt.weekday
+df["month"] = df['Datetime'].dt.month
+df["day"] = df['Datetime'].dt.weekday
 
 df["month"].replace([i for i in range(1, 12 + 1)], ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustur","September","Oktober","November","Desember"], inplace=True)
 df["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],inplace=True)
