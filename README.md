@@ -187,6 +187,20 @@ Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada s
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
 
+Untuk menampilkan penjualan produk berdasarkan waktu (jam) dalam sehari. Masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='hour',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Waktu')
+plt.show()
+```
+Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='month',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Bulan')
+plt.show()
+```
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
 ```bash
