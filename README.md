@@ -122,6 +122,26 @@ out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/e2613709-419b-45e4-b53e-301f4977d960)
 
+
+Lalu, jika ingin menampilkan 10 produk yang kurang laris. Masukan perintah :
+```bash
+bottom_item = bakery['Item'].value_counts().nsmallest(10)
+
+plt.figure(figsize=(12, 6))
+sns.countplot(x='Item', data=bakery, order=bottom_item.index, palette='viridis')
+plt.xlabel('Item')
+plt.ylabel('Count')
+plt.title('10 Produk Yang Kurang Laris')
+plt.xticks(size=13, rotation=45)
+plt.tight_layout()
+
+plt.show()
+```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
+
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
 ```bash
