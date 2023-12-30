@@ -155,12 +155,12 @@ bakery = bakery.drop(['Date','Time'],axis=1)
 bakery.head()
 ```
 
-Untuk mengkonversikan kolom 'Datetime' dalam DataFrame bakery menjadi objek waktu (datetime). Masukan perintah :
+Untuk mengkonversikan kolom Datetime dalam Data Frame bakery menjadi objek waktu. Masukan perintah :
 ```bash
 bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%Y-%m-%d %H:%M")
 ```
 
-Untuk mendapatkan tipe data dari kolom "Datetime" dalam DataFrame bakery. Masukan perintah :
+Untuk mendapatkan tipe data dari kolom Datetime dalam Data Frame bakery. Masukan perintah :
 ```bash
 bakery["Datetime"].dtype
 ```
