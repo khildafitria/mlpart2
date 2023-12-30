@@ -143,9 +143,10 @@ plt.show()
 ```bash
 out :
 ```
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
 
 Disini tampil countplot yang menampilkan urutan 10 produk makanan yang kurang laris dimulai dari gift voucher, raw bars, polenta, chicken sand, the bart, adjusment, olum & polenta, bacon, fairy doors, dan hack the stack.
+
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
 
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
