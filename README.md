@@ -95,6 +95,11 @@ Laku Jika ingin menampilkan jumlah data dan kolom yang ada di dataset, masukan p
 bakery.shape
 ```
 
+Jika ingin mengetahui kolom apa saja yang ada pada dataset, masukan perintah :
+```bash
+bakery.columns
+```
+
 ## Exploratory Data Analysis
 Jika ingin menampilkan 10 produk yang paling laris pada dataset ini, yaitu masukan perintah :
 ```bash
@@ -133,9 +138,54 @@ plt.show()
 out :
 ```
 
-Disini tampil countplot yang menampilkan urutan 10 produk makanan yang kurang laris dimulai dari gift voucher, raw bars, polenta, chicken sand, the bart, adjusment, olum & polenta, bacon, fairy doors, dan hack the stack.
+Disini tampil grafik yang menampilkan frekuensi 10 produk makanan yang kurang laris dimulai dari gift voucher, raw bars, polenta, chicken sand, the bart, adjusment, olum & polenta, bacon, fairy doors, dan hack the stack.
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
+
+## Data Preparation
+Untuk menggabungkan kolom date dan time. masukan perintah :
+```bash
+bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
+```
+
+Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. 
+Masukan perintah :
+```bash
+bakery = bakery.drop(['Date','Time'],axis=1)
+bakery.head()
+```
+
+Untuk mengkonversikan kolom 'Datetime' dalam DataFrame bakery menjadi objek waktu (datetime). Masukan perintah :
+```bash
+bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%Y-%m-%d %H:%M")
+```
+
+Untuk mendapatkan tipe data dari kolom "Datetime" dalam DataFrame bakery. Masukan perintah :
+```bash
+bakery["Datetime"].dtype
+```
+
+Untuk memecah kolom Datetime ke dalam  bulan, hari, dan jam. Masukan perintah :
+```bash
+bakery["month"] = bakery['Datetime'].dt.month
+bakery["day"] = bakery['Datetime'].dt.day
+bakery["hour"] = bakery['Datetime'].dt.hour
+bakery.head()
+```
+
+Jika ingin menampilkan penjualan produk berdasarkan tanggal, maka masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='day',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Tanggal')
+plt.show()
+```
+```bash
+out :
+```
+Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada setiap tanggal (hari). Setiap batang pada sumbu x menunjukkan seberapa sering produk terjual pada hari tertentu.
+
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
 
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
@@ -183,22 +233,6 @@ out :
 ```
 ![image](https://github.com/khildafitria/machinelearning/assets/149028314/bec186f1-c2b2-4dda-ad66-1979503ba7cb)
 
-## Data Preparation
-Untuk menggabungkan kolom date dan time. masukan perintah :
-```bash
-bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
-```
-
-Lalu menghapus kolom date dan time sebelumnya, dan menampilkan kolom baru menjadi Datetime. 
-Masukan perintah :
-```bash
-bakery = bakery.drop(['Date','Time'],axis=1)
-bakery.head()
-```
-Konversikan kolom 'Datetime' dalam DataFrame bakery menjadi objek waktu (datetime). Masukan perintah :
-```bash
-bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%Y-%m-%d %H:%M")
-```
 ## Modeling
 Untuk melakukan modeling saya memakai algoritma regresi linear, dimana kita harus memisahkan mana saja atribut yang akan dijadikan sebagai fitur(x) dan atribut mana yang dijadikan label(y).
 ```bash
