@@ -41,26 +41,29 @@ Dataset yang digunakan adalah dataset yang diambil dari kaggle, dimana isi dari 
 - Forearm : merupakan ukuran lingkar tangan bawah dalam satuan cm.(Float)
 - Wrist : merupakan ukuran lingkar pergelangan tangan dalam satuan cm.(Float)
 
-## Data Preparation
+## Import Library
 Data berdasarkan kaggle
 
 Pertama import dulu library yang di butuh dengan memasukan perintah :
 ```bash
-import numpy as np
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+import networkx as nx
+from mlxtend.frequent_patterns import association_rules, apriori
+import warnings
+warnings.filterwarnings('ignore')
 ```
 
-Kemudian agar dataset di dalam kaggle langsung bisa terhubung ke collab maka harus membuat token terlebih dahulu di akun kaggle dengan memasukan perintah : 
+Kemudian agar dataset di dalam kaggle langsung bisa terhubung ke google collab maka harus membuat token terlebih dahulu di akun kaggle dengan memasukan perintah : 
 ```bash
 from google.colab import files
 files.upload()
 ```
 Setelah itu lalu masukan file token.
 
+## Import Dataset
 Berikutnya yaitu membuat direktori dengan memasukan perintah :
 ```bash
 !mkdir -p ~/.kaggle
@@ -71,41 +74,53 @@ Berikutnya yaitu membuat direktori dengan memasukan perintah :
 
 Setelah itu kita panggil url dataset yang ada di website kaggle untuk didownload langsung ke google colab.
 ```bash
-!kaggle datasets download -d fedesoriano/body-fat-prediction-dataset
+!kaggle datasets download -d sulmansarwar/transactions-from-a-bakery
 ```
 
 Jika berhasil, selanjutnya kita ekstrak dataset yang sudah didownload dengan perintah :
 ```bash
-!mkdir body-fat-prediction-dataset
-!unzip body-fat-prediction-dataset.zip -d body-fat-prediction-dataset
-!ls body-fat-prediction-dataset
+!mkdir transactions-from-a-bakery
+!unzip transactions-from-a-bakery -d transactions-from-a-bakery
+!ls transactions-from-a-bakery
 ```
 
 Jika berhasil diekstrak, maka kita langsung dapat membuka dataset tersebut dengan perintah :
 ```bash
-df = pd.read_csv('/content/body-fat-prediction-dataset/bodyfat.csv')
+bakery = pd.read_csv('/content/transactions-from-a-bakery/BreadBasket_DMS.csv')
 ```
 
-Lalu kita dapat melakukan beberapa exploratory daya analysis sederhana, mulai dari menampilkan isi
-dari dataset bodyfat.csv dengan memasukan perintah :
+## Data Discovery
+Lalu kita dapat melakukan beberapa proses pengumpulan data sederhana, mulai dari menampilkan isi
+dari dataset BreadBasket_DMS.csv dengan memasukan perintah :
 ```bash
-df.head()
+bakery.head()
 ```
 
-Jika ingin menampilkan jumlah data dan kolom yang ada di dataset, masukan perintah :
+kita cek tipe data dari masing-masing atribut/fitur dari dataset dari BreadBasket_DMS.csv , masukan perintah :
 ```bash
-df.shape
+bakery.info()
 ```
 
-Lalu kita cek tipe data dari masing-masing atribut/fitur dari dataset dari bodyfat.csv , masukan perintah :
+Laku Jika ingin menampilkan jumlah data dan kolom yang ada di dataset, masukan perintah :
 ```bash
-df.info()
+bakery.shape
 ```
 
-Untuk menampilkan detail informasi dari dataset, masukan perintah :
-```bash
-df.describe()
+## Exploratory Data Analysis
+Jika ingin menampilkan 10 produk yang paling laris pada dataset ini, yaitu masukan perintah :
+``bash
+top_item = bakery['Item'].value_counts().nlargest(10)
+custom_colors = ['#FF9999', '#66B2FF', '#99FF99', '#FFCC99', '#c2c2f0', '#ffb3e6', '#c2f0c2', '#ff6666', '#c2f0f0', '#ffcc99']
+
+plt.figure(figsize=(8, 8))
+plt.pie(top_item, labels=top_item.index, autopct='%1.1f%%', startangle=90, colors=custom_colors)
+plt.title('Top 10 Produk Yang Paling Laris')
+plt.show()
 ```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/e2613709-419b-45e4-b53e-301f4977d960)
 
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
