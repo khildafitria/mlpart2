@@ -32,7 +32,7 @@ def user_input_features():
 
 item, month, day = user_input_features()
 
-bakery = get_data(month, day)
+bakery = get_bakery(month, day)
 
 def encode(x):
     if x <= 0:
