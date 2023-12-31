@@ -67,7 +67,7 @@ def return_item_bakery(item_antecedents):
     bakery["antecedents"] = bakery["antecedents"].apply(parse_list)
     bakery["consequents"] = bakery["consequents"].apply(parse_list)
 
-    return list(bakery.loc[data["antecedents"] == item_antecedents].iloc[0,:])
+    return list(bakery.loc[bakery["antecedents"] == item_antecedents].iloc[0,:])
 
 if type(bakery) != type("No Result!"):
     st.markdown("Hasil Rekomendasi : ")
