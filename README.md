@@ -30,7 +30,7 @@ Dataset yang digunakan adalah dataset yang diambil dari kaggle, Dataset Transact
 - Transaction : merupakan jumlah produk yang konsumen beli di toko roti. 
 - Item : merupakan menu makanan produk yang dijual di toko roti.
 
-## Data preprocessing
+## Data preparation
 Data berdasarkan kaggle
 
 Pertama import dulu library yang di butuh dengan memasukan perintah :
