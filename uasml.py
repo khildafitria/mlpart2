@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from mlxtend.frequent_patterns import association_rules, apriori
 
-bakery = pd.read_csv('Groceries_dataset.csv')
+bakery = pd.read_csv('BreadBasket_DMS.csv')
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
 bakery['Date'] = pd.to_datetime(bakery['Date'], format= "%d-%m-%Y")
 
