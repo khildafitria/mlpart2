@@ -13,7 +13,7 @@ bakery["day"] = bakery['Datetime'].dt.day
 bakery["month"].replace([i for i in range(1, 12 + 1)], ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustur","September","Oktober","November","Desember"], inplace=True)
 bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],inplace=True)
 
-st.title("UAS Transaction of a bakery Algoritma Apriori")
+st.title("UAS Transaction from a bakery Algoritma Apriori")
 
 def get_data( month ='' , day = ''):
     bakery = bakery.copy()
