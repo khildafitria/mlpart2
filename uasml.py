@@ -61,14 +61,14 @@ def parse_list(x):
         return ", ".join(x)
 
 def return_item_bakery(item_antecedents):
-    bakery_subset = bakery.loc[bakery["antecedents"] == item_antecedents]
+    rules_subset = rules.loc[rules["antecedents"] == item_antecedents]
     
-    if not bakery_subset.empty:
-        return list(bakery_subset.iloc[0, :])
+    if not rules_subset.empty:
+        return list(rules_subset.iloc[0, :])
     else:
         return ["No Result"]
 
-    return list(bakery.loc[bakery["antecedents"] == item_antecedents].iloc[0,:])
+    bakery_subset = bakery.loc[bakery["antecedents"] == item_antecedents]
 
 if type(bakery) != type("No Result!"):
     st.markdown("Hasil Rekomendasi : ")
