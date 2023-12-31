@@ -245,14 +245,12 @@ out :
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/bf7bceab-5e55-4353-944c-8c1477d866be)
 
 ## Modeling
-Untuk melakukan modeling saya memakai algoritma regresi linear, dimana kita harus memisahkan mana saja atribut yang akan dijadikan sebagai fitur(x) dan atribut mana yang dijadikan label(y).
+Untuk menghitung berapa kali item yang ada pada dataset tersebut muncul dalam transaksi, masukan perintah :
 ```bash
-features = ['Density', 'Age', 'Weight', 'Height', 'Neck', 'Chest','Abdomen', 'Hip', 'Thigh', 'Knee', 'Ankle', 'Biceps', 'Forearm','Wrist']
-x = df[features]
-y = df['BodyFat']
-x.shape, y.shape
+item_count = bakery.groupby(["Transaction", "Item"])["Item"].count().reset_index(name="Count")
+item_count.head(10)
 ```
-Pada perintah tersebut kita gunakan Density, Age, Weight, Height, Neck, Chest, Abdomen, Hip, Thigh, Knee, Ankle, Biceps, Forearm, dan Wrist sebagai fitur inputan(x). Sedangkan BodyFat dijadikan sebagai label(y), karena BodyFat merupakan nilai yang akan diestimasi.
+Pada perintah tersebut kita gunakan kolom Transaction dan item
 
 
 Berikutnya lakukan split data, yaitu memisahkan data training dan data testing dengan memasukan perintah :
