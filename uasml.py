@@ -4,6 +4,7 @@ import numpy as np
 from mlxtend.frequent_patterns import association_rules, apriori
 
 bakery = pd.read_csv('BreadBasket_DMS.csv')
+bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
 bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%d-%m-%Y")
 
 bakery["month"] = bakery['Datetime'].dt.month
