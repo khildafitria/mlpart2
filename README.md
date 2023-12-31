@@ -4,10 +4,10 @@
 ### Kelas : Teknik Informatika Pagi B
 
 ## Domain Proyek
-Proyek yang saya angkat adalah Platform Analisis Pasar pada toko roti. yang diambil dari 4 parameter yang telah ditentukan, berisi data transaksi mencakup informasi produk yang dibeli oleh pelanggan dalam satu transaksi. Maka dari itu, saya mencoba membuat Platform Analisis Pasar dapat membantu toko roti dalam meningkatkan strategi pemasaran dan menawarkan produk yang lebih menarik bagi pelanggan melalui pola pembelian dan keterkaitan produk.
+Proyek yang saya angkat adalah Platform Analisis Pasar pada toko roti. yang diambil dari 4 parameter yang telah ditentukan, berisi data transaksi mencakup informasi produk yang dibeli oleh pelanggan dalam satu transaksi. Maka dari itu, saya mencoba membuat Platform Analisis Pasar diharap dapat membantu toko roti dalam meningkatkan strategi pemasaran dan menawarkan produk yang lebih menarik bagi pelanggan melalui pola pembelian dan keterkaitan produk.
 
 ## Business Understanding
-Proyek ini memudahkan toko roti untuk memahami produk yang sering dibeli bersamaan, sehingga toko roti dapat menyusun strategi yang lebih efektif dalam penempatan produk, penawaran paket, dan promosi. juga dapat meningkatkan kepuasan pelanggan dengan menyediakan kombinasi produk yang sesuai dengan kebutuhan mereka.
+Proyek ini memudahkan toko roti untuk memahami produk yang sering dibeli secara bersamaan, sehingga toko roti dapat menyusun strategi yang lebih efektif dalam penempatan produk, penawaran paket, dan promosi. juga dapat meningkatkan kepuasan pelanggan dengan menyediakan kombinasi produk yang sesuai dengan kebutuhan mereka.
 
 Bagian laporan ini mencakup :
 ### Problem Statements
