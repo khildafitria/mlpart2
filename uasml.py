@@ -61,7 +61,7 @@ def parse_list(x):
     elif len(x) > 1:
         return ", ".join(x)
 
-def return_item_df(item_antecedents):
+def return_item_bakery(item_antecedents):
     data = rules[["antecedents", "consequents"]].copy()
      
     data["antecedents"] = data["antecedents"].apply(parse_list)
