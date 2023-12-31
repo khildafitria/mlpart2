@@ -16,7 +16,6 @@ bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis
 st.title("UAS Transaction from a bakery Algoritma Apriori")
 
 def get_bakery(filtered_month='', filtered_day=''):
-    # Use a different variable name for the local copy
     filtered_df = bakery.loc[
         (bakery["month"].str.contains(filtered_month.title())) &
         (bakery["day"].str.contains(filtered_day.title()))
@@ -62,10 +61,12 @@ def parse_list(x):
         return ", ".join(x)
 
 def return_item_bakery(item_antecedents):
-    bakery = rules[["antecedents", "consequents"]].copy()
-     
-    bakery["antecedents"] = bakery["antecedents"].apply(parse_list)
-    bakery["consequents"] = bakery["consequents"].apply(parse_list)
+    bakery_subset = bakery.loc[bakery["antecedents"] == item_antecedents]
+    
+    if not bakery_subset.empty:
+        return list(bakery_subset.iloc[0, :])
+    else:
+        return ["No Result"]
 
     return list(bakery.loc[bakery["antecedents"] == item_antecedents].iloc[0,:])
 
