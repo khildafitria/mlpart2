@@ -16,7 +16,7 @@ bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis
 st.title("UAS Transaction from a bakery Algoritma Apriori")
 
 def get_data( month ='' , day = ''):
-    bakery = data.copy()
+    bakery = bakery.copy()
     filtered = bakery.loc[
         (bakery["month"].str.contains(month.title())) &
         (bakery["day"].str.contains(day.title()))
@@ -32,7 +32,7 @@ def user_input_features():
 
 item, month, day = user_input_features()
 
-bakery = get_data(month, day)
+bakery = get_bakery(month, day)
 
 def encode(x):
     if x <= 0:
