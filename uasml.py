@@ -17,11 +17,11 @@ st.title("UAS Transaction from a bakery Algoritma Apriori")
 
 def get_bakery( month ='' , day = ''):
     bakery = bakery.copy()
-    filtered_bakery = bakery.loc[
+    filtered = bakery.loc[
         (bakery["month"].str.contains(month.title())) &
         (bakery["day"].str.contains(day.title()))
     ]
-    return filtered_bakery if filtered_bakery.shape[0] else "No Result!"
+    return filtered if filtered.shape[0] else "No Result!"
 
 def user_input_features():
     item = st.selectbox("Item", ['coffee', 'bread', 'tea', 'cake', 'pastry', 'none', 'sandwich', 'medialuna', 'hot chocolate', 'cookies', 'brownie', 'farm house', 'muffin', 'juice', 'alfajores', 'soup', 'scone', 'toast', 'scandinavian', 'truffles', 'coke', 'spanish brunch', 'fudge', 'baguette', 'jam', 'tiffin', 'mineral water', 'jammie' 'dodgers', 'chicken stew', 'hearty & seasonal', 'salad', 'frittata', 'smoothies', 'keeping it local', 'the nomad', 'focaccia', 'vegan mincepie', 'bakewell', 'tartine', 'afternoon with the baker', 'extra salami or feta', 'art tray', 'eggs', 'granola', 'tshirt', 'my-5 fruit shoot', 'ellas kitchen pouches', 'vegan feast', 'crisps', 'dulce de leche', 'valentines card', 'kids biscuit', 'duck egg', 'pick and mix bowls', 'christmas common', 'tacos/fajita', 'mighty protein', 'chocolates', 'postcard', 'gingerbread syrup', 'muesli nomad bag', 'drinking chocolate spoons', 'coffee granules', 'victorian sponge', 'empanadas', 'argentina night', 'crepes', 'honey', 'pintxos', 'lemon and coconut', 'basket', 'half slice monster', 'bare popcorn', 'panatone', 'mortimer', 'bread pudding', 'cherry me dried fruit', 'brioche and salami', 'caramel bites', 'raspberry short bread sandwich', 'fairy doors', 'hack the stack', 'bowl nic pitt', 'chimichurri oil', 'spread', 'siblings', 'gift voucher', 'raw bars', 'polenta', 'chicken sand', 'the bart', 'adjustment', 'olum & polenta', 'bacon'])
