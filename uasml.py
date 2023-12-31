@@ -3,35 +3,37 @@ import pandas as pd
 import numpy as np
 from mlxtend.frequent_patterns import association_rules, apriori
 
-bakery = pd.read_csv('BreadBasket_DMS.csv')
+bakery = pd.read_csv('Groceries_dataset.csv')
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
-bakery['Datetime'] = pd.to_datetime(bakery['Datetime'], format= "%d-%m-%Y")
+bakery['Date'] = pd.to_datetime(bakery['Date'], format= "%d-%m-%Y")
 
-bakery["month"] = bakery['Datetime'].dt.month
-bakery["day"] = bakery['Datetime'].dt.day
+bakery["month"] = bakery['Date'].dt.month
+bakery["day"] = bakery['Date'].dt.weekday
 
 bakery["month"].replace([i for i in range(1, 12 + 1)], ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustur","September","Oktober","November","Desember"], inplace=True)
-bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"], inplace=True)
+bakery["day"].replace([i for i in range(6 + 1)], ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],inplace=True)
 
-st.title("UAS Transaction from a bakery Algoritma Apriori")
+st.title("UAS Grocery Basket Analysis Algoritma Apriori")
 
-def get_bakery(filtered_month='', filtered_day=''):
-    filtered_df = bakery.loc[
-        (bakery["month"].str.contains(filtered_month.title())) &
-        (bakery["day"].str.contains(filtered_day.title()))
+def get_data( month ='' , day = ''):
+    data = bakery.copy()
+    filtered = data.loc[
+        (data["month"].str.contains(month.title())) &
+        (data["day"].str.contains(day.title()))
     ]
-    return filtered_df if filtered_df.shape[0] else "No Result!"
+    return filtered if filtered.shape[0] else "No Result!"
 
 def user_input_features():
     item = st.selectbox("Item", ['coffee', 'bread', 'tea', 'cake', 'pastry', 'none', 'sandwich', 'medialuna', 'hot chocolate', 'cookies', 'brownie', 'farm house', 'muffin', 'juice', 'alfajores', 'soup', 'scone', 'toast', 'scandinavian', 'truffles', 'coke', 'spanish brunch', 'fudge', 'baguette', 'jam', 'tiffin', 'mineral water', 'jammie' 'dodgers', 'chicken stew', 'hearty & seasonal', 'salad', 'frittata', 'smoothies', 'keeping it local', 'the nomad', 'focaccia', 'vegan mincepie', 'bakewell', 'tartine', 'afternoon with the baker', 'extra salami or feta', 'art tray', 'eggs', 'granola', 'tshirt', 'my-5 fruit shoot', 'ellas kitchen pouches', 'vegan feast', 'crisps', 'dulce de leche', 'valentines card', 'kids biscuit', 'duck egg', 'pick and mix bowls', 'christmas common', 'tacos/fajita', 'mighty protein', 'chocolates', 'postcard', 'gingerbread syrup', 'muesli nomad bag', 'drinking chocolate spoons', 'coffee granules', 'victorian sponge', 'empanadas', 'argentina night', 'crepes', 'honey', 'pintxos', 'lemon and coconut', 'basket', 'half slice monster', 'bare popcorn', 'panatone', 'mortimer', 'bread pudding', 'cherry me dried fruit', 'brioche and salami', 'caramel bites', 'raspberry short bread sandwich', 'fairy doors', 'hack the stack', 'bowl nic pitt', 'chimichurri oil', 'spread', 'siblings', 'gift voucher', 'raw bars', 'polenta', 'chicken sand', 'the bart', 'adjustment', 'olum & polenta', 'bacon'])
     month = st.select_slider("Month", ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"])
     day = st.select_slider("Day", ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"], value='Senin')
 
+    
     return item, month, day
 
 item, month, day = user_input_features()
 
-bakery = get_bakery(month, day)
+data = get_data(month, day)
 
 def encode(x):
     if x <= 0:
@@ -39,9 +41,9 @@ def encode(x):
     elif x >= 1:
         return 1
     
-if type(bakery) != type("No Result"):
-    item_count = bakery.groupby(['Transaction', 'Item'])["Item"].count().reset_index(name="Count")
-    item_count_pivot = item_count.pivot_table(index='Transaction', columns='Item', values='Count', aggfunc='sum').fillna(0) 
+if type(bakery) != type ("No Result"):
+    item_count = data.groupby(['Member_number', 'itemDescription'])["itemDescription"].count().reset_index(name="Count")
+    item_count_pivot = item_count.pivot_table(index='Member_number', columns='itemDescription', values='Count', aggfunc='sum').fillna(0) 
     item_count_pivot = item_count_pivot.applymap(encode)
 
     support = 0.01
@@ -51,7 +53,7 @@ if type(bakery) != type("No Result"):
     min_threshold = 1
 
     rules = association_rules(frequent_items, metric=metric, min_threshold=min_threshold)[["antecedents","consequents","support","confidence","lift"]]
-    rules.sort_values('confidence', ascending=False, inplace=True)
+    rules.sort_values('confidence', ascending=False,inplace=True)
 
 def parse_list(x):
     x = list(x)
@@ -60,19 +62,14 @@ def parse_list(x):
     elif len(x) > 1:
         return ", ".join(x)
 
-def return_item_bakery(item_antecedents):
-    if 'rules' not in globals():
-        return ["No Result: Rules not available"]
+def return_item_df(item_antecedents):
+    bakery = rules[["antecedents", "consequents"]].copy()
+     
+    bakery["antecedents"] = bakery["antecedents"].apply(parse_list)
+    bakery["consequents"] = bakery["consequents"].apply(parse_list)
 
-    rules_subset = rules.loc[rules["antecedents"] == item_antecedents]
-    
-    if not rules_subset.empty:
-        return list(rules_subset.iloc[0, :])
-    else:
-        return ["No Result"]
+    return list(data.loc[bakery["antecedents"] == item_antecedents].iloc[0,:])
 
-result = return_item_bakery(item)
-if len(result) > 1:
-    st.success(f"Jika Konsumen Membeli **{item}**, maka membeli **{result[1]}** secara bersamaan")
-else:
-    st.warning(f"Tidak ada hasil yang sesuai untuk item **{item}**")
+if type(bakery) != type("No Result!"):
+    st.markdown("Hasil Rekomendasi : ")
+    st.success(f"Jika Konsumen Membeli **{item}**, maka membeli **{return_item_df(item)[1]}** secara bersamaan")
