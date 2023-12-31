@@ -11,7 +11,7 @@ bakery["month"] = bakery['Datetime'].dt.month
 bakery["day"] = bakery['Datetime'].dt.day
 
 bakery["month"].replace([i for i in range(1, 12 + 1)], ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustur","September","Oktober","November","Desember"], inplace=True)
-bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],inplace=True)
+bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"], inplace=True)
 
 st.title("UAS Transaction from a bakery Algoritma Apriori")
 
@@ -39,7 +39,7 @@ def encode(x):
     elif x >= 1:
         return 1
     
-if type(bakery) != type ("No Result"):
+if type(bakery) != type("No Result"):
     item_count = bakery.groupby(['Transaction', 'Item'])["Item"].count().reset_index(name="Count")
     item_count_pivot = item_count.pivot_table(index='Transaction', columns='Item', values='Count', aggfunc='sum').fillna(0) 
     item_count_pivot = item_count_pivot.applymap(encode)
@@ -51,7 +51,7 @@ if type(bakery) != type ("No Result"):
     min_threshold = 1
 
     rules = association_rules(frequent_items, metric=metric, min_threshold=min_threshold)[["antecedents","consequents","support","confidence","lift"]]
-    rules.sort_values('confidence', ascending=False,inplace=True)
+    rules.sort_values('confidence', ascending=False, inplace=True)
 
 def parse_list(x):
     x = list(x)
@@ -68,9 +68,8 @@ def return_item_bakery(item_antecedents):
     else:
         return ["No Result"]
 
-    bakery_subset = bakery.loc[bakery["antecedents"] == item_antecedents]
-
-if type(bakery) != type("No Result!"):
-    st.markdown("Hasil Rekomendasi : ")
-    st.success(f"Jika Konsumen Membeli **{item}**, maka membeli **{return_item_bakery(item)[1]}** secara bersamaan")
-    
+result = return_item_bakery(item)
+if len(result) > 1:
+    st.success(f"Jika Konsumen Membeli **{item}**, maka membeli **{result[1]}** secara bersamaan")
+else:
+    st.warning(f"Tidak ada hasil yang sesuai untuk item **{item}**")
