@@ -16,10 +16,10 @@ bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis
 st.title("UAS Grocery Basket Analysis Algoritma Apriori")
 
 def get_data( month ='' , day = ''):
-    data = bakery.copy()
-    filtered = data.loc[
-        (data["month"].str.contains(month.title())) &
-        (data["day"].str.contains(day.title()))
+    bakery = bakery.copy()
+    filtered = bakery.loc[
+        (bakery["month"].str.contains(month.title())) &
+        (bakery["day"].str.contains(day.title()))
     ]
     return filtered if filtered.shape[0] else "No Result!"
 
@@ -32,7 +32,7 @@ def user_input_features():
 
 item, month, day = user_input_features()
 
-data = get_data(month, day)
+bakery = get_data(month, day)
 
 def encode(x):
     if x <= 0:
@@ -40,8 +40,8 @@ def encode(x):
     elif x >= 1:
         return 1
     
-if type(data) != type ("No Result"):
-    item_count = data.groupby(['Transaction', 'Item'])["Item"].count().reset_index(name="Count")
+if type(bakery) != type ("No Result"):
+    item_count = bakery.groupby(['Transaction', 'Item'])["Item"].count().reset_index(name="Count")
     item_count_pivot = item_count.pivot_table(index='Transaction', columns='Item', values='Count', aggfunc='sum').fillna(0) 
     item_count_pivot = item_count_pivot.applymap(encode)
 
@@ -62,12 +62,12 @@ def parse_list(x):
         return ", ".join(x)
 
 def return_item_bakery(item_antecedents):
-    data = rules[["antecedents", "consequents"]].copy()
+    bakery = rules[["antecedents", "consequents"]].copy()
      
-    data["antecedents"] = data["antecedents"].apply(parse_list)
-    data["consequents"] = data["consequents"].apply(parse_list)
+    bakery["antecedents"] = bakery["antecedents"].apply(parse_list)
+    bakery["consequents"] = bakery["consequents"].apply(parse_list)
 
-    return list(data.loc[data["antecedents"] == item_antecedents].iloc[0,:])
+    return list(bakery.loc[data["antecedents"] == item_antecedents].iloc[0,:])
 
 if type(data) != type("No Result!"):
     st.markdown("Hasil Rekomendasi : ")
