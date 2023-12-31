@@ -129,47 +129,6 @@ bakery["hour"] = bakery['Datetime'].dt.hour
 bakery.head()
 ```
 
-Jika ingin menampilkan penjualan produk berdasarkan tanggal, maka masukan perintah :
-```bash
-plt.figure(figsize=(8,5))
-sns.countplot(x='day',data=bakery)
-plt.title('Penjualan Produk Berdasarkan Tanggal')
-plt.show()
-```
-```bash
-out :
-```
-Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada setiap tanggal (hari). Setiap batang pada sumbu x menunjukkan seberapa sering produk terjual pada hari tertentu.
-
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
-
-Untuk menampilkan penjualan produk berdasarkan waktu (jam) dalam sehari. Masukan perintah :
-```bash
-plt.figure(figsize=(8,5))
-sns.countplot(x='hour',data=bakery)
-plt.title('Penjualan Produk Berdasarkan Waktu')
-plt.show()
-```
-```bash
-out :
-```
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
-
-Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
-```bash
-plt.figure(figsize=(8,5))
-sns.countplot(x='month',data=bakery)
-plt.title('Penjualan Produk Berdasarkan Bulan')
-plt.show()
-```
-```bash
-out :
-```
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
-
-
-## Data Discovery
-
 ## Exploratory Data Analysis
 Jika ingin menampilkan 10 produk yang paling laris pada dataset ini, yaitu masukan perintah :
 ```bash
@@ -212,6 +171,47 @@ Disini tampil grafik yang menampilkan frekuensi 10 produk makanan yang kurang la
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/aab8d367-3f95-4457-b374-b8b8544c9b83)
 
+
+Jika ingin menampilkan penjualan produk berdasarkan tanggal, maka masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='day',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Tanggal')
+plt.show()
+```
+```bash
+out :
+```
+Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada setiap tanggal (hari). Setiap batang pada sumbu x menunjukkan seberapa sering produk terjual pada hari tertentu.
+
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
+
+Untuk menampilkan penjualan produk berdasarkan waktu (jam) dalam sehari. Masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='hour',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Waktu')
+plt.show()
+```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
+
+Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
+```bash
+plt.figure(figsize=(8,5))
+sns.countplot(x='month',data=bakery)
+plt.title('Penjualan Produk Berdasarkan Bulan')
+plt.show()
+```
+```bash
+out :
+```
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
+
+
+## Data Discovery
 
 ## Visualisasi Data
 Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
