@@ -61,6 +61,9 @@ def parse_list(x):
         return ", ".join(x)
 
 def return_item_bakery(item_antecedents):
+    if 'rules' not in globals():
+        return ["No Result: Rules not available"]
+
     rules_subset = rules.loc[rules["antecedents"] == item_antecedents]
     
     if not rules_subset.empty:
