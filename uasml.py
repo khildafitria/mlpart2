@@ -69,7 +69,7 @@ def return_item_bakery(item_antecedents):
 
     return list(bakery.loc[data["antecedents"] == item_antecedents].iloc[0,:])
 
-if type(data) != type("No Result!"):
+if type(bakery) != type("No Result!"):
     st.markdown("Hasil Rekomendasi : ")
     st.success(f"Jika Konsumen Membeli **{item}**, maka membeli **{return_item_bakery(item)[1]}** secara bersamaan")
     
