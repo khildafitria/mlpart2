@@ -16,7 +16,7 @@ bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis
 st.title("UAS Transaction from a bakery Algoritma Apriori")
 
 def get_data( month ='' , day = ''):
-    bakery = bakery.copy()
+    bakery = data.copy()
     filtered = bakery.loc[
         (bakery["month"].str.contains(month.title())) &
         (bakery["day"].str.contains(day.title()))
