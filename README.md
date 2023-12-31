@@ -97,8 +97,6 @@ Jika ingin mengetahui kolom apa saja yang ada pada dataset, masukan perintah :
 bakery.columns
 ```
 
-
-##
 Untuk menggabungkan kolom date dan time. masukan perintah :
 ```bash
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
@@ -210,54 +208,41 @@ out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
 
-
-## Data Discovery
-
 ## Visualisasi Data
-Jika ingin mengecek heatmap dari data kita ada yang kosong atau tidak, masukan perintah :
+Untuk memvisualisasikan hubungan antara nilai support dan confidence, masukan perintah :
 ```bash
-sns.heatmap(df.isnull())
+plt.scatter(rules['support'], rules['confidence'], alpha=0.5, color='green')
+plt.xlabel('Support')
+plt.ylabel('Confidence')
+plt.title('Association Rules - Support vs Confidence')
+plt.show()
 ```
 ```bash
 out :
 ```
-<img width="338" alt="Screenshot 2023-10-26 230013" src="https://github.com/khildafitria/machinelearning/assets/149028314/60ba8229-27ff-4895-a4f2-7f23b5730a3a">
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/e876c773-86b4-4470-997c-0b52a6f325cd)
 
-Menggunakan heatmap untuk melihat sebaran data pada dataset bodyfat.csv , masukan perintah :
+
+Untuk membuat visualisasi jaringan (network visualization) pada dataset BreadBasket_DMS.csv , masukan perintah :
 ```bash
-plt.figure(figsize=(10,8))
-sns.heatmap(df.corr(), annot=True)
+# Network visualization for association rules
+G = nx.Graph()
+
+for index, row in rules.iterrows():
+    G.add_edge(', '.join(row['antecedents']), ', '.join(row['consequents']), weight=row['lift'])
+
+# Set the layout
+pos = nx.spring_layout(G)
+
+# Draw the network
+nx.draw(G, pos, with_labels=True, font_size=7, node_size=1000, node_color='skyblue', font_color='black', font_weight='bold', edge_color='gray', width=[d['weight'] * 0.1 for u, v, d in G.edges(data=True)])
+plt.title('Association Rules Network Visualization')
+plt.show()
 ```
 ```bash
 out :
 ```
-<img width="430" alt="image" src="https://github.com/khildafitria/machinelearning/assets/149028314/9724d627-cf6d-4794-8826-93098ef3690f">
-
-
-Menampilkan informasi umur berdasarkan berat maka masukan perintah :
-```bash
-models=df.groupby('Age').count()[['Weight']].sort_values(by='Age', ascending=True).reset_index()
-models=models.rename(columns={'Age':'Height'})
-```
-```bash
-fig=plt.figure(figsize=(15,5))
-sns.barplot(x=models['Height'], y=models['Weight'], color='orange')
-plt.xticks(rotation=60)
-```
-```bash
-out :
-```
-![image](https://github.com/khildafitria/machinelearning/assets/149028314/9e355699-5971-4123-ab4e-2eede09cdd5e)
-
-Menampilkan distribusi dari fitur lemak tubuh, masukan perintah :
-```bash
-plt.figure(figsize=(15,5))
-sns.histplot(df['BodyFat'])
-```
-```bash
-out :
-```
-![image](https://github.com/khildafitria/machinelearning/assets/149028314/bec186f1-c2b2-4dda-ad66-1979503ba7cb)
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/bf7bceab-5e55-4353-944c-8c1477d866be)
 
 ## Modeling
 Untuk melakukan modeling saya memakai algoritma regresi linear, dimana kita harus memisahkan mana saja atribut yang akan dijadikan sebagai fitur(x) dan atribut mana yang dijadikan label(y).
