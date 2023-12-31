@@ -4,20 +4,20 @@
 ### Kelas : Teknik Informatika Pagi B
 
 ## Domain Proyek
-Proyek yang saya angkat adalah perhitungan lemak tubuh yang diambil dari 14 parameter yang telah ditentukan. Menurut peneliti, Peningkatan lemak dalam tubuh dapat berpengaruh dalam perubahan bentuk tubuh manusia. Maka dari itu, saya selaku pembuat mencoba membuat pengukur kadar lemak sebagai tindakan agar anda dapat mengetahui jumlah lemak yang ada dalam tubuh dan mencegah terjadinya obesitas.
+Proyek yang saya angkat adalah Platform Analisis Pasar pada toko roti. yang diambil dari 4 parameter yang telah ditentukan, berisi data transaksi mencakup informasi produk yang dibeli oleh pelanggan dalam satu transaksi. Maka dari itu, saya mencoba membuat Platform Analisis Pasar dapat membantu toko roti dalam meningkatkan strategi pemasaran dan menawarkan produk yang lebih menarik bagi pelanggan melalui pola pembelian dan keterkaitan produk.
 
 ## Business Understanding
-Proyek ini memudahkan serta menghemat waktu kita dalam pengukuran lemak tubuh yang akurat, agar kita dapat mengetahui kadar jumlah lemak yang ada pada tubuh kita tanpa harus pergi ke rumahsakit atau membeli alatnya terlebih dulu.
+Proyek ini memudahkan toko roti untuk memahami produk yang sering dibeli bersamaan, sehingga toko roti dapat menyusun strategi yang lebih efektif dalam penempatan produk, penawaran paket, dan promosi. juga dapat meningkatkan kepuasan pelanggan dengan menyediakan kombinasi produk yang sesuai dengan kebutuhan mereka.
 
 Bagian laporan ini mencakup :
 ### Problem Statements
-- Ketidaktahuan seseorang terhadap jumlah lemak yang ada dalam tubuhnya.
+- Ketidaktahuan toko roti terhadap Pola Keterkaitan Produk mana yang sering dibeli bersamaan oleh pelanggan.
 
 ### Goals
-- Untuk mengetahui kadar lemak dalam tubuh, sehingga bisa membantu memantau kondisi kesehatan.
+- Untuk mengidentifikasi pola pembelian bersama dan memahami hubungan antarproduk, sehingga toko dapat meningkatkan penjualan melalui penawaran paket atau strategi bundling.
 
     ### Solution statements
-- Dikembangkannya perhitungan lemak tubuh berbasis web agar dapat mengetahui dengan mudah jumlah lemak yang ada dalam tubuh kita dengan parameter yang telah ditentukan dan dihitung menggunakan algoritma Regresi Linear.
+- Dikembangkannya Platform Analisis Pasar berbasis web agar dapat mengetahui dengan mudah produk yang sering dibeli secara bersamaan dengan parameter yang telah ditentukan dan dihitung menggunakan algoritma Apriori.
 
 ## Data Understanding
 Dataset yang digunakan adalah dataset yang diambil dari kaggle, Dataset Transactions from a bakery ini terdiri dari 21.293 observasi dari sebuah toko roti. Isinya yaitu seluruh data transaksi konsumen yang berbelanja pada toko roti.
@@ -31,6 +31,74 @@ Dataset yang digunakan adalah dataset yang diambil dari kaggle, Dataset Transact
 - Item : merupakan menu makanan produk yang dijual di toko roti.
 
 ## Data preprocessing
+Data berdasarkan kaggle
+
+Pertama import dulu library yang di butuh dengan memasukan perintah :
+```bash
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import networkx as nx
+from mlxtend.frequent_patterns import association_rules, apriori
+import warnings
+warnings.filterwarnings('ignore')
+```
+
+Kemudian agar dataset di dalam kaggle langsung bisa terhubung ke google collab maka harus membuat token terlebih dahulu di akun kaggle dengan memasukan perintah : 
+```bash
+from google.colab import files
+files.upload()
+```
+Setelah itu lalu masukan file token.
+
+Berikutnya yaitu membuat direktori dengan memasukan perintah :
+```bash
+!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle
+!chmod 600 ~/.kaggle/kaggle.json
+!ls ~/.kaggle
+```
+
+Setelah itu kita panggil url dataset yang ada di website kaggle untuk didownload langsung ke google colab.
+```bash
+!kaggle datasets download -d sulmansarwar/transactions-from-a-bakery
+```
+
+Jika berhasil, selanjutnya kita ekstrak dataset yang sudah didownload dengan perintah :
+```bash
+!mkdir transactions-from-a-bakery
+!unzip transactions-from-a-bakery -d transactions-from-a-bakery
+!ls transactions-from-a-bakery
+```
+
+Jika berhasil diekstrak, maka kita langsung dapat membuka dataset tersebut dengan perintah :
+```bash
+bakery = pd.read_csv('/content/transactions-from-a-bakery/BreadBasket_DMS.csv')
+```
+Lalu kita dapat melakukan beberapa proses pengumpulan data sederhana, mulai dari menampilkan isi
+dari dataset BreadBasket_DMS.csv dengan memasukan perintah :
+```bash
+bakery.head()
+```
+
+kita cek tipe data dari masing-masing atribut/fitur dari dataset dari BreadBasket_DMS.csv , masukan perintah :
+```bash
+bakery.info()
+```
+
+Laku Jika ingin menampilkan jumlah data dan kolom yang ada di dataset, masukan perintah :
+```bash
+bakery.shape
+```
+
+Jika ingin mengetahui kolom apa saja yang ada pada dataset, masukan perintah :
+```bash
+bakery.columns
+```
+
+
+##
 Untuk menggabungkan kolom date dan time. masukan perintah :
 ```bash
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
@@ -99,75 +167,8 @@ out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
 
-## Import Library
-Data berdasarkan kaggle
-
-Pertama import dulu library yang di butuh dengan memasukan perintah :
-```bash
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import networkx as nx
-from mlxtend.frequent_patterns import association_rules, apriori
-import warnings
-warnings.filterwarnings('ignore')
-```
-
-Kemudian agar dataset di dalam kaggle langsung bisa terhubung ke google collab maka harus membuat token terlebih dahulu di akun kaggle dengan memasukan perintah : 
-```bash
-from google.colab import files
-files.upload()
-```
-Setelah itu lalu masukan file token.
-
-## Import Dataset
-Berikutnya yaitu membuat direktori dengan memasukan perintah :
-```bash
-!mkdir -p ~/.kaggle
-!cp kaggle.json ~/.kaggle
-!chmod 600 ~/.kaggle/kaggle.json
-!ls ~/.kaggle
-```
-
-Setelah itu kita panggil url dataset yang ada di website kaggle untuk didownload langsung ke google colab.
-```bash
-!kaggle datasets download -d sulmansarwar/transactions-from-a-bakery
-```
-
-Jika berhasil, selanjutnya kita ekstrak dataset yang sudah didownload dengan perintah :
-```bash
-!mkdir transactions-from-a-bakery
-!unzip transactions-from-a-bakery -d transactions-from-a-bakery
-!ls transactions-from-a-bakery
-```
-
-Jika berhasil diekstrak, maka kita langsung dapat membuka dataset tersebut dengan perintah :
-```bash
-bakery = pd.read_csv('/content/transactions-from-a-bakery/BreadBasket_DMS.csv')
-```
 
 ## Data Discovery
-Lalu kita dapat melakukan beberapa proses pengumpulan data sederhana, mulai dari menampilkan isi
-dari dataset BreadBasket_DMS.csv dengan memasukan perintah :
-```bash
-bakery.head()
-```
-
-kita cek tipe data dari masing-masing atribut/fitur dari dataset dari BreadBasket_DMS.csv , masukan perintah :
-```bash
-bakery.info()
-```
-
-Laku Jika ingin menampilkan jumlah data dan kolom yang ada di dataset, masukan perintah :
-```bash
-bakery.shape
-```
-
-Jika ingin mengetahui kolom apa saja yang ada pada dataset, masukan perintah :
-```bash
-bakery.columns
-```
 
 ## Exploratory Data Analysis
 Jika ingin menampilkan 10 produk yang paling laris pada dataset ini, yaitu masukan perintah :
