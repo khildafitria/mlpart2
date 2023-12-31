@@ -3,19 +3,19 @@ import pandas as pd
 import numpy as np
 from mlxtend.frequent_patterns import association_rules, apriori
 
-df = pd.read_csv('BreadBasket_DMS.csv')
-df['Datetime'] = pd.to_datetime(df['Date'], format= "%d-%m-%Y")
+bakery = pd.read_csv('BreadBasket_DMS.csv')
+bakery['Datetime'] = pd.to_datetime(bakery['Date'], format= "%d-%m-%Y")
 
-df["month"] = df['Date'].dt.month
-df["day"] = df['Date'].dt.weekday
+bakery["month"] = bakery['Date'].dt.month
+bakery["day"] = bakery['Date'].dt.weekday
 
-df["month"].replace([i for i in range(1, 12 + 1)], ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustur","September","Oktober","November","Desember"], inplace=True)
-df["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],inplace=True)
+bakery["month"].replace([i for i in range(1, 12 + 1)], ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustur","September","Oktober","November","Desember"], inplace=True)
+bakery["day"].replace([i for i in range(6 + 1)], ["senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"],inplace=True)
 
 st.title("UAS Grocery Basket Analysis Algoritma Apriori")
 
 def get_data( month ='' , day = ''):
-    data = df.copy()
+    data = bakery.copy()
     filtered = data.loc[
         (data["month"].str.contains(month.title())) &
         (data["day"].str.contains(day.title()))
