@@ -46,7 +46,7 @@ if type(data) != type ("No Result"):
     item_count_pivot = item_count.pivot_table(index='Transaction', columns='Item', values='Count', aggfunc='sum').fillna(0) 
     item_count_pivot = item_count_pivot.applymap(encode)
 
-    support = 0.05
+    support = 0.01
     frequent_items = apriori(item_count_pivot, min_support=support, use_colnames=True)
 
     metric = "lift"
