@@ -307,8 +307,9 @@ Hasil dari metrik evaluasinya 99% sama dengan hasil akurasi yang sebelumnya dila
 - Dengan menggunakan presisi membantu dalam mengukur sejauh mana model ini dapat menghindari kesalahan.
   
 ## Deployment
-[Perhitungan Lemak Tubuh](https://machinelearning-khilda.streamlit.app/). 
+[Transaction from a bakery](https://mlpart2-machinelearning.streamlit.app/). 
 
-![image](https://github.com/khildafitria/machinelearning/assets/149028314/ccb44c6a-6415-45fe-af51-dd1c91f0dcea)
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/20288154-3be4-4f61-840f-bf6ed8e9b3d6)
+
 
 
