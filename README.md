@@ -309,7 +309,5 @@ Hasil dari metrik evaluasinya 99% sama dengan hasil akurasi yang sebelumnya dila
 ## Deployment
 [Transaction from a bakery](https://mlpart2-machinelearning.streamlit.app/). 
 
-![image](https://github.com/khildafitria/mlpart2/assets/149028314/20288154-3be4-4f61-840f-bf6ed8e9b3d6)
-
-
+![image](https://github.com/khildafitria/mlpart2/assets/149028314/41c6abf5-6554-49e7-95a0-2cad37b065a6)
 
