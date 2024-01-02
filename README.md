@@ -72,7 +72,7 @@ Jika berhasil, selanjutnya kita ekstrak dataset yang sudah didownload dengan per
 !ls transactions-from-a-bakery
 ```
 
-Jika berhasil diekstrak, maka kita langsung dapat membuka dataset tersebut dengan perintah :
+Jika berhasil diekstrak, karena saya mendefinisikan data menjadi bakery maka kita langsung dapat membuka dataset tersebut dengan perintah :
 ```bash
 bakery = pd.read_csv('/content/transactions-from-a-bakery/BreadBasket_DMS.csv')
 ```
@@ -214,6 +214,11 @@ Untuk menghitung berapa kali item yang ada pada dataset tersebut muncul dalam tr
 item_count = bakery.groupby(["Transaction", "Item"])["Item"].count().reset_index(name="Count")
 item_count.head(10)
 ```
+```bash
+out :
+```
+<img width="180" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/ac9c694f-90f3-4cf8-9a9f-4f27dc880f78">
+
 Pada perintah tersebut kita gunakan kolom Transaction dan item
 
 ## Visualisasi Data
