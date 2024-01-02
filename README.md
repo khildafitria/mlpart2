@@ -84,8 +84,7 @@ bakery.head()
 ```bash
 out :
 ```
-<img width="220" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/c4ccb892-bb03-4deb-a7e3-8aabf7e60d88">
-
+<img width="357" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/175e52b1-6fc3-4433-bdc0-73a4cc29a430">
 
 kita cek tipe data dari masing-masing atribut/fitur dari dataset dari BreadBasket_DMS.csv , masukan perintah :
 ```bash
@@ -136,8 +135,7 @@ bakery.head()
 ```bash
 out :
 ```
-<img width="211" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/cf244408-53c1-4bf7-8dee-e8d953959326">
-
+<img width="359" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/5a1f5cbf-9d20-4ae6-bd19-fedbc324dd3f">
 
 Untuk mengkonversikan kolom Datetime dalam Data Frame bakery menjadi objek waktu. Masukan perintah :
 ```bash
@@ -159,7 +157,7 @@ bakery.head()
 ```bash
 out :
 ```
-<img width="290" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/f18d6448-becd-441d-b8ee-7b7b372d00a6">
+<img width="470" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/f12357c4-eaa1-422a-a713-ccc586331b45">
 
 
 ## Exploratory Data Analysis
