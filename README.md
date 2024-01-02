@@ -20,7 +20,7 @@ Bagian laporan ini mencakup :
 - Dikembangkannya Platform Analisis Pasar berbasis web agar dapat mengetahui dengan mudah produk yang sering dibeli secara bersamaan dengan parameter yang telah ditentukan dan dihitung menggunakan algoritma Apriori.
 
 ## Data Understanding
-Dataset yang digunakan adalah dataset yang diambil dari kaggle, Dataset Transactions from a bakery ini terdiri dari 21.293 observasi dari sebuah toko roti. Isinya yaitu seluruh data transaksi konsumen yang berbelanja pada toko roti.
+Dataset yang digunakan adalah dataset yang diambil dari kaggle, Dataset Transactions from a bakery ini terdiri dari 21.293 observasi dari sebuah toko roti. Isinya yaitu seluruh data transaksi pelanggan yang berbelanja pada toko roti.
 
 [Transactions from a bakery](https://www.kaggle.com/datasets/sulmansarwar/transactions-from-a-bakery). 
 
