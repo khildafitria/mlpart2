@@ -308,21 +308,6 @@ out :
 <img width="227" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/daa202f4-e274-4e84-8f82-33d218a1258a">
 
 
-Untuk menampilkan metrik lift dan tingkat kepercayaan, kita dapat mengevaluasi seberapa kuat aturan asosiasi yang dihasilkan oleh model. Masukan perintah :
-```bash
-metric = "lift"
-min_treshold = 1
-
-rules = association_rules(frequent_items, metric=metric, min_threshold=min_treshold)[["antecedents","consequents","support","confidence","lift"]]
-rules.sort_values('confidence', ascending=False,inplace=True)
-rules.head(15)
-```
-```bash
-out :
-```
-<img width="470" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/11ecf1b5-877b-4c02-9ed4-8570d9a074fe">
-
-
 ## Visualisasi Data
 Untuk memvisualisasikan hubungan antara nilai support dan confidence dengan scatter plot, masukan perintah :
 ```bash
@@ -363,6 +348,20 @@ Hasilnya menunjukkan hubungan antara antecedents dan consequents dari aturan aso
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/bf7bceab-5e55-4353-944c-8c1477d866be)
 
+## Evaluasi
+Untuk menampilkan metrik lift dan tingkat kepercayaan, kita dapat mengevaluasi seberapa kuat aturan asosiasi yang dihasilkan oleh model. Masukan perintah :
+```bash
+metric = "lift"
+min_treshold = 1
+
+rules = association_rules(frequent_items, metric=metric, min_threshold=min_treshold)[["antecedents","consequents","support","confidence","lift"]]
+rules.sort_values('confidence', ascending=False,inplace=True)
+rules.head(15)
+```
+```bash
+out :
+```
+<img width="470" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/11ecf1b5-877b-4c02-9ed4-8570d9a074fe">
 
 ## Deployment
 [Transaction from a bakery](https://mlpart2-machinelearning.streamlit.app/). 
