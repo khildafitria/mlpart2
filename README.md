@@ -102,6 +102,26 @@ Jika ingin mengetahui kolom apa saja yang ada pada dataset, masukan perintah :
 bakery.columns
 ```
 
+Untuk mengubah semua nilai dalam kolom tersebut menjadi huruf kecil (lowercase), masukan perintah :
+```bash
+bakery['Item'] = bakery['Item'].apply(lambda item: item.lower())
+```
+
+Untuk menghapus spasi (whitespace) di awal dan akhir setiap nilai dalam kolom, masukan perintah :
+```bash
+bakery['Item'] = bakery['Item'].apply(lambda item: item.strip())
+```
+
+Untuk menampilkan kolom transaction dan item, maka masukan perintah :
+```bash
+bakery = bakery[["Transaction", "Item"]].copy()
+bakery.head(10)
+```
+```bash
+out :
+```
+<img width="248" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/41b90925-4b1e-4351-b71d-60e079992a89">
+
 Untuk menggabungkan kolom date dan time. masukan perintah :
 ```bash
 bakery['Datetime'] = pd.to_datetime(bakery['Date'] + ' ' + bakery['Time'], format='%Y-%m-%d %H:%M:%S')
