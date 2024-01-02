@@ -324,7 +324,7 @@ out :
 
 
 ## Visualisasi Data
-Untuk memvisualisasikan hubungan antara nilai support dan confidence, masukan perintah :
+Untuk memvisualisasikan hubungan antara nilai support dan confidence dengan scatter plot, masukan perintah :
 ```bash
 plt.scatter(rules['support'], rules['confidence'], alpha=0.5, color='green')
 plt.xlabel('Support')
@@ -335,6 +335,8 @@ plt.show()
 ```bash
 out :
 ```
+Hasilnya menunjukkan setiap titik pada plot mewakili satu aturan asosiasi, di mana sumbu x mewakili nilai support, sumbu y mewakili nilai confidence.
+
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/e876c773-86b4-4470-997c-0b52a6f325cd)
 
 
@@ -357,6 +359,8 @@ plt.show()
 ```bash
 out :
 ```
+Hasilnya menunjukkan hubungan antara antecedents dan consequents dari aturan asosiasi. Node (simpul) merepresentasikan kumpulan item, dan edge (garis hubungan) antara node merepresentasikan aturan asosiasi. Lebar edge menggambarkan nilai lift.
+
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/bf7bceab-5e55-4353-944c-8c1477d866be)
 
 
