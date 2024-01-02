@@ -250,9 +250,70 @@ item_count.head(10)
 ```bash
 out :
 ```
-<img width="180" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/ac9c694f-90f3-4cf8-9a9f-4f27dc880f78">
+<img width="276" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/26dee5f8-2c5e-416f-ab35-fbff1ac96e4c">
 
-Pada perintah tersebut kita gunakan kolom Transaction dan item
+Untuk mendapatkan tabel pivot yang memberikan ringkasan tentang jumlah item yang terjual pada setiap transaksi. Masukan perintah :
+```bash
+item_count_pivot = item_count.pivot_table(index='Transaction', columns='Item', values='Count', aggfunc='sum').fillna(0)
+print("ukuran dataset : ", item_count_pivot.shape)
+item_count_pivot.head(5)
+```
+```bash
+out :
+```
+<img width="913" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/7379cc17-d658-4e78-9440-a590eaa063dc">
+
+Untuk mengganti nilai-nilai dalam data bakery, semua nilai yang kurang dari atau sama dengan 0 menjadi 0, dan semua nilai yang lebih besar atau sama dengan 1 menjadi 1. Masukan perintah :
+```bash
+def encode(x):
+    if x <=0:
+        return 0
+    elif x >= 1:
+        return 1
+
+item_count_pivot = item_count_pivot.applymap(encode)
+item_count_pivot.head()
+```
+```bash
+out :
+```
+<img width="914" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/f04b8bc0-3e95-4740-8d12-bea11d1a6d55">
+
+Untuk mencetak informasi tentang ukuran data bakery, termasuk jumlah transaksi dan jumlah item. Masukan perintah :
+```bash
+print("ukuran dataset : ", item_count_pivot.shape)
+print("jumlah transaksi : ", item_count_pivot.shape[0])
+print("jumlah item : ", item_count_pivot.shape[1])
+```
+```bash
+out :
+```
+<img width="240" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/3140e256-4ae9-411b-961b-250c318949c0">
+
+Untuk menemukan kumpulan itemset yang memiliki nilai minimum support 0.01 , masukan perintah :
+```bash
+support = 0.01
+frequent_items = apriori(item_count_pivot, min_support=support, use_colnames=True)
+frequent_items.sort_values("support", ascending=False).head(10)
+```
+```bash
+out :
+```
+<img width="227" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/daa202f4-e274-4e84-8f82-33d218a1258a">
+
+Untuk menampilkan metrik seperti lift dan tingkat kepercayaan, kita dapat mengevaluasi seberapa kuat aturan asosiasi yang dihasilkan oleh model. Masukan perintah :
+```bash
+metric = "lift"
+min_treshold = 1
+
+rules = association_rules(frequent_items, metric=metric, min_threshold=min_treshold)[["antecedents","consequents","support","confidence","lift"]]
+rules.sort_values('confidence', ascending=False,inplace=True)
+rules.head(15)
+```
+```bash
+out :
+```
+<img width="470" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/11ecf1b5-877b-4c02-9ed4-8570d9a074fe">
 
 ## Visualisasi Data
 Untuk memvisualisasikan hubungan antara nilai support dan confidence, masukan perintah :
