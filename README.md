@@ -81,6 +81,11 @@ dari dataset BreadBasket_DMS.csv dengan memasukan perintah :
 ```bash
 bakery.head()
 ```
+```bash
+out :
+```
+<img width="220" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/c4ccb892-bb03-4deb-a7e3-8aabf7e60d88">
+
 
 kita cek tipe data dari masing-masing atribut/fitur dari dataset dari BreadBasket_DMS.csv , masukan perintah :
 ```bash
@@ -108,6 +113,11 @@ Masukan perintah :
 bakery = bakery.drop(['Date','Time'],axis=1)
 bakery.head()
 ```
+```bash
+out :
+```
+<img width="211" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/cf244408-53c1-4bf7-8dee-e8d953959326">
+
 
 Untuk mengkonversikan kolom Datetime dalam Data Frame bakery menjadi objek waktu. Masukan perintah :
 ```bash
@@ -126,6 +136,11 @@ bakery["day"] = bakery['Datetime'].dt.day
 bakery["hour"] = bakery['Datetime'].dt.hour
 bakery.head()
 ```
+```bash
+out :
+```
+<img width="290" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/f18d6448-becd-441d-b8ee-7b7b372d00a6">
+
 
 ## Exploratory Data Analysis
 Jika ingin menampilkan 10 produk yang paling laris pada dataset ini, yaitu masukan perintah :
