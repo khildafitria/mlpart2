@@ -217,6 +217,7 @@ Grafik menampilkan batang-batang yang mewakili frekuensi penjualan produk pada s
 
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/26e35b62-db04-4bed-bb19-dac288d56615)
 
+
 Untuk menampilkan penjualan produk berdasarkan waktu (jam) dalam sehari. Masukan perintah :
 ```bash
 plt.figure(figsize=(8,5))
@@ -228,6 +229,7 @@ plt.show()
 out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/d64cdd77-ec55-438e-9aec-3c65a8bbdebe)
+
 
 Untuk menampilkan penjualan produk berdasarkan bulan. Masukan perintah :
 ```bash
@@ -252,6 +254,7 @@ out :
 ```
 <img width="276" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/26dee5f8-2c5e-416f-ab35-fbff1ac96e4c">
 
+
 Untuk mendapatkan tabel pivot yang memberikan ringkasan tentang jumlah item yang terjual pada setiap transaksi. Masukan perintah :
 ```bash
 item_count_pivot = item_count.pivot_table(index='Transaction', columns='Item', values='Count', aggfunc='sum').fillna(0)
@@ -262,6 +265,7 @@ item_count_pivot.head(5)
 out :
 ```
 <img width="913" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/7379cc17-d658-4e78-9440-a590eaa063dc">
+
 
 Untuk mengganti nilai-nilai dalam data bakery, semua nilai yang kurang dari atau sama dengan 0 menjadi 0, dan semua nilai yang lebih besar atau sama dengan 1 menjadi 1. Masukan perintah :
 ```bash
@@ -279,6 +283,7 @@ out :
 ```
 <img width="914" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/f04b8bc0-3e95-4740-8d12-bea11d1a6d55">
 
+
 Untuk mencetak informasi tentang ukuran data bakery, termasuk jumlah transaksi dan jumlah item. Masukan perintah :
 ```bash
 print("ukuran dataset : ", item_count_pivot.shape)
@@ -289,6 +294,7 @@ print("jumlah item : ", item_count_pivot.shape[1])
 out :
 ```
 <img width="240" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/3140e256-4ae9-411b-961b-250c318949c0">
+
 
 Untuk menemukan kumpulan itemset yang memiliki nilai minimum support 0.01 , masukan perintah :
 ```bash
@@ -301,7 +307,8 @@ out :
 ```
 <img width="227" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/daa202f4-e274-4e84-8f82-33d218a1258a">
 
-Untuk menampilkan metrik seperti lift dan tingkat kepercayaan, kita dapat mengevaluasi seberapa kuat aturan asosiasi yang dihasilkan oleh model. Masukan perintah :
+
+Untuk menampilkan metrik lift dan tingkat kepercayaan, kita dapat mengevaluasi seberapa kuat aturan asosiasi yang dihasilkan oleh model. Masukan perintah :
 ```bash
 metric = "lift"
 min_treshold = 1
@@ -314,6 +321,7 @@ rules.head(15)
 out :
 ```
 <img width="470" alt="image" src="https://github.com/khildafitria/mlpart2/assets/149028314/11ecf1b5-877b-4c02-9ed4-8570d9a074fe">
+
 
 ## Visualisasi Data
 Untuk memvisualisasikan hubungan antara nilai support dan confidence, masukan perintah :
