@@ -208,6 +208,14 @@ out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/2925ccbf-be00-4b3f-b03f-85f77f4cebf2)
 
+## Modeling
+Untuk menghitung berapa kali item yang ada pada dataset tersebut muncul dalam transaksi, masukan perintah :
+```bash
+item_count = bakery.groupby(["Transaction", "Item"])["Item"].count().reset_index(name="Count")
+item_count.head(10)
+```
+Pada perintah tersebut kita gunakan kolom Transaction dan item
+
 ## Visualisasi Data
 Untuk memvisualisasikan hubungan antara nilai support dan confidence, masukan perintah :
 ```bash
@@ -244,68 +252,7 @@ out :
 ```
 ![image](https://github.com/khildafitria/mlpart2/assets/149028314/bf7bceab-5e55-4353-944c-8c1477d866be)
 
-## Modeling
-Untuk menghitung berapa kali item yang ada pada dataset tersebut muncul dalam transaksi, masukan perintah :
-```bash
-item_count = bakery.groupby(["Transaction", "Item"])["Item"].count().reset_index(name="Count")
-item_count.head(10)
-```
-Pada perintah tersebut kita gunakan kolom Transaction dan item
 
-
-Berikutnya lakukan split data, yaitu memisahkan data training dan data testing dengan memasukan perintah :
-```bash
-from sklearn.model_selection import train_test_split
-x_train, X_test, y_train, y_test = train_test_split(x,y,random_state=70)
-y_test.shape
-```
-
-Lalu masukan data training dan testing ke dalam model regresi linier dengan perintah :
-```bash
-from sklearn.linear_model import LinearRegression
-lr = LinearRegression()
-lr.fit(x_train,y_train)
-pred = lr.predict(X_test)
-```
-
-Untuk mengecek akurasinya masukan perintah :
-```bash
-score = lr.score(X_test, y_test)
-print('akurasi model regresi linear =', score)
-```
-```bash
-out : akurasi model regresi linear = 0.9909700768437055
-```
-Didapatkan nilai akurasi 99% , hal ini dipengaruhi oleh jumlah parameter yang digunakan. Jika parameternya dikurangi maka tingkat akurasinya terpengaruh.
-
-
-Selanjutnya mencoba menggunakan model estimasi menggunakan regresi linier dengan memasukan perintah :
-```bash
-input_data = np.array([[1.0708 , 23 ,	154.25 ,	67.75 ,	36.2 ,	93.1 ,	85.2 ,	94.5 ,	59.0	, 37.3 ,	21.9 ,	32.0 ,	27.4 ,	17.1]])
-prediction = lr.predict(input_data)
-print('Perkiraan Lemak Tubuh Dalam Persen :', prediction)
-```
-```bash
-out : Perkiraan Lemak Tubuh Dalam Persen : [11.87458955]
-```
-
-Berdasarkan data yang telah diteliti, maka kita dapat mengetahui kadar lemak yang ada dalam tubuh kita.
-
-## Evaluation
-Metrik evaluasi yang digunakan yaitu precision dengan memasukan perintah :
-```bash
-from sklearn.metrics import r2_score
-score = r2_score(y_test, pred)
-
-print(f"precision = {score}")
-```
-```bash
-out : precision = 0.9909700768437055
-```
-Hasil dari metrik evaluasinya 99% sama dengan hasil akurasi yang sebelumnya dilakukan. Berarti model ini memiliki keseimbangan yang baik dari segi presisinya. 
-- Saya memilih menggunakan metrik **precision**. Karena dalam mendeteksi lemak tubuh, kesalahan dalam mendeteksi yang sebenarnya tidak ada menyebabkan kecemasan yang tidak perlu atau biaya tambahan untuk tes lebih lanjut.
-- Dengan menggunakan presisi membantu dalam mengukur sejauh mana model ini dapat menghindari kesalahan.
-  
 ## Deployment
 [Transaction from a bakery](https://mlpart2-machinelearning.streamlit.app/). 
 
